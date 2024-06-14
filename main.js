@@ -12,13 +12,13 @@ const PORT = process.env.PORT || 3002;
 
 // Connecting the css page
 // main.use(path.join(__dirname + 'style'));
-main.use(express.static('style'));
-main.use(express.static('images'));
-main.use(express.static('script'));
+main.use(express.static('public/style'));
+main.use(express.static('public/images'));
+main.use(express.static('public/script'));
 
 // Connecting The Route with html page
 main.get('/home', (req,res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'home.html'));
+    res.sendFile(path.join(__dirname, 'public/pages', 'home.html'));
   });
 
 // Starting the PORT
