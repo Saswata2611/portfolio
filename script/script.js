@@ -45,38 +45,67 @@ function contact(){
     blg.style.display = "none";
     cont.style.display = "block";
 }
-// Circular Progressbar
-$(document).ready(function ($) {
-    function animateElements() {
-        $('.progressbar').each(function () {
-            var elementPos = $(this).offset().top;
-            var topOfWindow = $(window).scrollTop();
-            var percent = $(this).find('.circle').attr('data-percent');
-            var percentage = parseInt(percent, 10) / parseInt(100, 10);
-            var animate = $(this).data('animate');
-            if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
-                $(this).data('animate', true);
-                $(this).find('.circle').circleProgress({
-                    startAngle: -Math.PI / 2,
-                    value: percent / 100,
-                    size: 180,
-                    thickness: 30,
-                    emptyFill: "rgba(0,0,0, .2)",
-                    fill: {
-                        color: '#fb4f14'
-                    }
-                }).on('circle-animation-progress', function (event, progress, stepValue) {
-                    $(this).find('div').text((stepValue*100).toFixed(1) + "%");
-                }).stop();
-            }
-        });
-    }
+// Certification
+// minor projects
+document.getElementById("pauseBtn").style.display = "none";
+document.getElementById("playBtn").style.display = "none";
+document.querySelector('.slideshow-container').onmouseover = function() {document.getElementById("buttons").style.display = "block"};
+document.querySelector('.slideshow-container').onmouseleave = function() {document.getElementById("buttons").style.display = "none"};
+document.getElementById('buttons').onmouseover = function() {document.getElementById("buttons").style.display = "block"};
+document.getElementById('buttons').onmouseleave = function() {document.getElementById("buttons").style.display = "none"};
+document.getElementById("playBtn").style.display = "none";
+var slides = document.querySelectorAll('.slide');
+var currentSlide = 0;
+var slideInterval;
 
-    // Show animated elements
-    animateElements();
-    $(window).scroll(animateElements);
-    
-    
-    
+function showSlide(n) {
+  slides[currentSlide].style.display = 'none';
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].style.display = 'block';
+}
 
-}); //end document ready function
+function playCarousel() {
+  slideInterval = setInterval(function() {
+    showSlide(currentSlide + 1);
+  }, 3000);
+  document.getElementById("pauseBtn").style.display = "block";
+  document.getElementById("playBtn").style.display = "none";
+}
+
+function pauseCarousel() {
+  clearInterval(slideInterval);
+  document.getElementById("pauseBtn").style.display = "none";
+  document.getElementById("playBtn").style.display = "block";
+}
+
+document.getElementById('playBtn').addEventListener('click', playCarousel);
+document.getElementById('pauseBtn').addEventListener('click', pauseCarousel);
+
+showSlide(currentSlide); // Show the first slide
+playCarousel(); // Start the carousel
+
+// Contact Form
+
+    const checkbox = document.getElementById('checkbox');
+document.getElementById("submit").style.display ="none";
+checkbox.addEventListener('click', function(){
+    if(checkbox.checked){
+    document.getElementById('submit').style.display = "block";
+}else{
+    document.getElementById('submit').style.display = "none";
+}
+})
+
+
+function hideText(){
+  var iconBox = document.getElementById('icons');
+  iconBox.style.display = "none";
+}
+function showText(){
+  var iconBox = document.getElementById('icons');
+  iconBox.style.display = "block";
+}
+setInterval(hideText, 5000);
+
+
+
