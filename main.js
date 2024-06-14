@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3002;
 // Connecting the css page
 // main.use(path.join(__dirname + 'style'));
 main.use(express.static('public/style'));
-main.use(express.static('public/images'));
+main.use(express.static('images'));
 main.use(express.static('public/script'));
 
 // Connecting The Route with html page
