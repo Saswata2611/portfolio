@@ -18,7 +18,7 @@ main.use(express.static('public/script'));
 
 // Connecting The Route with html page
 main.get('/home', (req,res) => {
-    res.sendFile(path.join(__dirname, 'public/pages', 'home.html'));
+    res.sendFile(path.join(__dirname, 'public/pages', 'index.html'));
   });
 
 // Starting the PORT
